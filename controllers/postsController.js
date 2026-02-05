@@ -21,7 +21,13 @@ exports.getPosts = async (req, res) => {
         select: "email",
       });
     res.status(200).json({ success: true, message: "posts", data: result });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };
 exports.createPost = async (req, res) => {
   const { title, description } = req.body;
@@ -49,7 +55,13 @@ exports.createPost = async (req, res) => {
       message: "Post created successfully",
       data: result,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };
 exports.getSinglePosts = async (req, res) => {
   const { _id } = req.query;
@@ -106,7 +118,13 @@ exports.updatePost = async (req, res) => {
       message: "Post updated successfully",
       data: result,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };
 exports.deletePost = async (req, res) => {
   const { _id } = req.query;
@@ -131,5 +149,11 @@ exports.deletePost = async (req, res) => {
       success: true,
       message: "Post deleted successfully",
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
 };

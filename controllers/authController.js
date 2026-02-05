@@ -43,8 +43,13 @@ exports.signup = async (req, res) => {
       response,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
+  
 };
 
 exports.login = async (req, res) => {
@@ -98,7 +103,11 @@ exports.login = async (req, res) => {
         message: "Logged in successfully",
       });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };
 
@@ -145,6 +154,10 @@ exports.sendVerificationCode = async (req, res) => {
     res.status(400).json({ success: false, message: "Code sending failed!" });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };
 
@@ -203,6 +216,10 @@ exports.verifyVerificationCode = async (req, res) => {
       .json({ success: false, message: "Unexpected error occured!" });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };
 
@@ -248,6 +265,10 @@ exports.changePassword = async (req, res) => {
       .json({ success: true, message: "Password updated!" });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };
 
@@ -280,8 +301,12 @@ exports.sendForgotPasswordCode = async (req, res) => {
     }
     res.status(400).json({ success: false, message: "Code sending failed!" });
   } catch (error) {
-    console.log(error);
-  }
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+    }
 };
 
 exports.verifyForgotPasswordCode = async (req, res) => {
@@ -342,5 +367,9 @@ exports.verifyForgotPasswordCode = async (req, res) => {
       .json({ success: false, message: "Unexpected error occured!" });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
   }
 };
